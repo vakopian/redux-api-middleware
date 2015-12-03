@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch';
+import isomorphicFetch from 'isomorphic-fetch';
 import isPlainObject from 'lodash.isplainobject';
 
 import CALL_API from './CALL_API';
@@ -12,7 +12,7 @@ import { getJSON, normalizeTypeDescriptors, actionWith } from './util';
  * @type {ReduxMiddleware}
  * @access public
  */
-function apiMiddleware({ getState }) {
+function apiMiddleware({ getState }, fetch = isomorphicFetch) {
   return (next) => async (action) => {
     // Do not process actions without a [CALL_API] property
     if (!isRSAA(action)) {
